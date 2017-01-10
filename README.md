@@ -1,7 +1,7 @@
-# @unional/demo-gen
+# demo-gen
 
 [![Build Status](https://travis-ci.org/unional/demo-gen.svg?branch=master)](https://travis-ci.org/unional/demo-gen)
-[![Coverage Status](https://coveralls.io/repos/github/unional/demo-gen/badge.svg?branch=master)](https://coveralls.io/github/unional/demo-gen?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/unional/demo-gen/badge.svg)](https://coveralls.io/github/unional/demo-gen)
 
 Demo pages generator the based on [`showdown`](https://github.com/showdownjs/showdown).
 

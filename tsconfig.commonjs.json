@@ -4,7 +4,7 @@
     "outDir": "dist/commonjs"
   },
   "files": [
-    "src/index.ts"
+    "src/bin.ts"
   ],
   "include": [
     "typings/index.d.ts"
