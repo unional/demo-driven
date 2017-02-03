@@ -53,7 +53,7 @@
     ]
   },
   "devDependencies": {
-    "ava": "^0.17.0",
+    "ava": "^0.18.1",
     "ava-fixture": "^0.8.0",
     "browser-env": "^2.0.19",
     "core-js": "^2.4.1",
