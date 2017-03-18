@@ -1,23 +1,11 @@
 ---
+title: Demo Generator
+subtitle:
+font: Open Sans
+color: light-green
+source: README.md
 links:
-  page1: ./page1.md
-  page2: ./page2.md
+  instal: install.md
+  cli: cli.md
+  API: api.md
 ---
-
-# Demo page for `demo-gen`
-
-`demo-gen` is a tool to generate demo pages for a package.
-
-
-
-## How to use
-
-To use `demo-gen`, you can install it through `npm`:
-
-```sh
-npm install -g demo-gen
-```
-
-
-
-

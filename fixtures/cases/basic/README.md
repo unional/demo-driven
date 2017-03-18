@@ -3,7 +3,11 @@
 [![Build Status](https://travis-ci.org/unional/demo-gen.svg?branch=master)](https://travis-ci.org/unional/demo-gen)
 [![Coverage Status](https://coveralls.io/repos/github/unional/demo-gen/badge.svg)](https://coveralls.io/github/unional/demo-gen)
 
-Generate demo pages for library.
+Demo pages generator the based on [`showdown`](https://github.com/showdownjs/showdown).
+
+Unlike `showdown`, which is a generic markdown to html converter, `demo-gen` is specialized in generating demo page for library.
+
+It will read configuration in `demo-gen.json` if specified.
 
 ## Usage
 
@@ -35,40 +39,6 @@ demogen . demo-output
   "extensions": [],
   "outDir": "dist",
   "src": ".",
-}
-```
-
-## Using global build
-
-To use this library in the global namespace environment, copy and reference the `dist/unional-demo-gen.js` file in script tag.
-
-To aid development, you can add the typings to your project by:
-
-Install this package:
-
-```sh
-npm install -D @unional/demo-gen
-```
-
-Create `custom-typings/unional-demo-gen.d.ts`:
-
-```ts
-export * from '@unional/demo-gen'
-export as namesapce UnionalDemoGen
-
-```
-
-Reference that file in your `tsconfig.json`:
-
-```js
-// tsconfig.json
-{
-  "compilerOptions": {
-    "allowJs": true, // if you write in JavaScript
-    "includes": [
-      "custom-typings/*.d.ts"
-    ]
-  }
 }
 ```
 
