@@ -1,6 +1,6 @@
 {
-  "name": "demo-gen",
-  "description": "Demo pages generator",
+  "name": "demodd",
+  "description": "Demo Driven Development",
   "version": "0.0.0",
   "main": "dist/commonjs/index.js",
   "bin": {

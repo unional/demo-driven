@@ -1,74 +1,25 @@
-# demo-gen
+# demodd
 
-[![Build Status](https://travis-ci.org/unional/demo-gen.svg?branch=master)](https://travis-ci.org/unional/demo-gen)
-[![Coverage Status](https://coveralls.io/repos/github/unional/demo-gen/badge.svg)](https://coveralls.io/github/unional/demo-gen)
+[![Build Status](https://travis-ci.org/unional/demodd.svg?branch=master)](https://travis-ci.org/unional/demodd)
+[![Coverage Status](https://coveralls.io/repos/github/unional/demodd/badge.svg)](https://coveralls.io/github/unional/demodd)
 
-Generate demo pages for library.
+Demo Driven Development
 
 ## Usage
 
 ```sh
-npm install -g demo-gen
+npm install -g demodd
 
-# Generate demo pages based on `demo-gen.json`
-demogen
-
-# Generate demo pages from the current folder, looking for index.md
-demogen .
-
-# Generate demo pages with a starting file not named as index.md
-demogen demo\demo.md
-
-# Generate single demo page
-demogen -s demo\demo.md
-
-# Generate demo pages to a specific location
-demogen . demo-output
+# Start the server
+demodd .
 ```
 
 ## configuration
 
 ```js
-// demo-gen.json
+// demodd.json
 {
-  // showdown extensions
-  "extensions": [],
-  "outDir": "dist",
-  "src": ".",
-}
-```
-
-## Using global build
-
-To use this library in the global namespace environment, copy and reference the `dist/unional-demo-gen.js` file in script tag.
-
-To aid development, you can add the typings to your project by:
-
-Install this package:
-
-```sh
-npm install -D @unional/demo-gen
-```
-
-Create `custom-typings/unional-demo-gen.d.ts`:
-
-```ts
-export * from '@unional/demo-gen'
-export as namesapce UnionalDemoGen
-
-```
-
-Reference that file in your `tsconfig.json`:
-
-```js
-// tsconfig.json
-{
-  "compilerOptions": {
-    "allowJs": true, // if you write in JavaScript
-    "includes": [
-      "custom-typings/*.d.ts"
-    ]
-  }
+  "src": "."
 }
 ```
 
