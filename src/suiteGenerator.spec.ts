@@ -15,16 +15,16 @@ ftest.skip('empty-file', async (t, d) => {
   t.true(fs.existsSync(path.join(d.resultPath, 'demo.html')))
 })
 
-test('src not exist', t => {
+test.skip('src not exist', t => {
   t.throws(generateSuite('notExist', '.'))
 })
 
-ftest('no-file', t => {
+ftest.skip('no-file', t => {
   // t.notThrows(generateSuite('.'))
   // t.notThrows(generateSuite())
 })
 
-ftest.failing('basic', async (t, d) => {
+ftest.skip.failing('basic', async (t, d) => {
   await generateSuite('demo.md', path.resolve(d.resultPath, 'demo.html'))
   return d.match()
 })

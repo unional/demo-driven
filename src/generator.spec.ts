@@ -1,24 +1,36 @@
 import test from 'ava'
+import h = require('hastscript')
+import toHtml = require('hast-util-to-html')
 
-import { generate, parse } from './generator'
+import { Generator, generate } from './generator'
 
 test('empty content produces empty result', async t => {
   t.is(await generate(''), '')
 })
 
 test('without metadata', async t => {
-  t.is(await generate(`# First Header`), '<h1>First Header</h1>')
+  t.is(
+    await generate(`# First Header`),
+    toHtml(h('h1', ['First Header'])))
 })
 
 test('with metadata', async t => {
-  t.is(await generate(`---
+  t.is(
+    await generate(`---
 title: demo
 ---
-# First Header`), '<header><div>demo</div></header><h1>First Header</h1>')
+# First Header`),
+    toHtml(
+      h('header', [h('div', ['demo'])])
+    ) +
+    toHtml(
+      h('h1', ['First Header'])
+    ))
 })
 
-test('parse meta', t => {
-  console.log(parse(`---
-title: demo
----`))
+test.skip('must have yaml section', async t => {
+  const generator = new Generator()
+  generator.addPage('demo', ``)
+  const rejected = await t.throws(generator.generate())
+  t.is(rejected.message, 'missing yaml section')
 })

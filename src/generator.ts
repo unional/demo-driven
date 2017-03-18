@@ -13,14 +13,44 @@ export const defaultOptions = {
   single: false
 }
 
-/**
- * @error Throws ENOENT if `src` does not exist.
- */
+export namespace Generator {
+  export interface Page {
+    name: string,
+    content: string
+  }
+}
+
+export class Generator {
+  pages: Generator.Page[] = []
+  private remark
+  constructor() {
+    this.remark = remark()
+  }
+  addPage(name: string, content: string) {
+    this.pages.push({ name, content })
+  }
+  async generate() {
+    return Promise.all(this.pages.map(async page => {
+      return this.generatePage(page)
+    }))
+  }
+  private async generatePage(page: Generator.Page) {
+    return new Promise((resolve, reject) => {
+      remark().use(lint).use(demoPage, {
+        name: page.name
+      }).process(page.content, (err, file) => {
+        if (err)
+          reject(err)
+        else
+          resolve(String(file))
+      })
+    })
+  }
+}
+
 export async function generate(text: string) {
   return new Promise((resolve, reject) => {
-    // const ast = remark.parse(text)
-    // resolve(ast)
-    remark().use(lint).use(demoPage).process(text, (err, file) => {
+    remark().use(lint).use(demoPage, { yamlOptional: true }).process(text, (err, file) => {
       if (err)
         reject(err)
       else
@@ -29,19 +59,19 @@ export async function generate(text: string) {
   })
 }
 
-export const parse = remark.parse
-
-function demoPage() {
+function demoPage(options) {
   this.Compiler = compiler
 
-  function compiler(tree, file) {
-    const hast = toHAST(tree)
+  function compiler(ast, file) {
+    const hast = toHAST(ast)
 
-    let yaml = extractYaml(tree)
+    let yaml = extractYaml(ast)
     if (yaml) {
       const node = yamlToHast(yaml)
       hast.children.unshift(node)
     }
+    else if (!options.yamlOptional)
+      file.fail('missing yaml section', ast)
     return toHtml(hast)
   }
 }
