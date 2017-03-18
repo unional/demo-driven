@@ -1,7 +1,7 @@
 ---
 links:
-[page1](./page1.md)
-[page2](./page2.md)
+  page1: ./page1.md
+  page2: ./page2.md
 ---
 
 # Demo page for `demo-gen`
