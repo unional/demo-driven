@@ -54,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.55",
     "@types/mz": "0.0.30",
     "@types/node": "^7.0.8",
     "ava": "github:avajs/ava",
@@ -73,8 +74,10 @@
   "dependencies": {
     "aurelia-logging": "^1.2.0",
     "aurelia-logging-color": "^0.5.0",
+    "deep-extend": "^0.4.1",
     "hast-util-to-html": "^3.0.0",
     "js-yaml": "^3.8.2",
+    "lodash": "^4.17.4",
     "markdown-to-ast": "^3.4.0",
     "mdast-util-to-hast": "^2.4.0",
     "mkdirp": "^0.5.1",

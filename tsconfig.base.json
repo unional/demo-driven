@@ -2,10 +2,7 @@
   "compilerOptions": {
     "declaration": true,
     "inlineSources": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
     "lib": [
-      "dom",
       "es2015",
       "es2015.reflect"
     ],
@@ -14,8 +11,9 @@
     "newLine": "LF",
     "noImplicitAny": false,
     "removeComments": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "sourceMap": true,
-    "sourceRoot": "/@unional/demo-gen",
     "strictNullChecks": true,
     "target": "es5"
   }

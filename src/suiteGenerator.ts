@@ -2,7 +2,7 @@ import { getLogger } from 'aurelia-logging'
 import fs = require('mz/fs')
 import path = require('path')
 
-import { generate} from './generator'
+import { generate } from './generate'
 
 export const defaultOptions = {
   single: false

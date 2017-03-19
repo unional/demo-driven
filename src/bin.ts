@@ -6,7 +6,7 @@ import * as program from 'commander'
 import { addAppender, getLogger, setLevel, logLevel } from 'aurelia-logging'
 import { ColorAppender } from 'aurelia-logging-color'
 
-import { generate } from './generator'
+import { generate } from './generate'
 
 const log = getLogger('demogen')
 addAppender(new ColorAppender())
