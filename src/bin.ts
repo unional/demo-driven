@@ -1,17 +1,15 @@
 #!/usr/bin/env node
 
-import { resolve } from 'path'
-import { readFileSync } from 'fs'
-import * as program from 'commander'
 import { addAppender, getLogger, setLevel, logLevel } from 'aurelia-logging'
 import { ColorAppender } from 'aurelia-logging-color'
-
-import { generate } from './generate'
+import program = require('commander')
+import fs = require('fs')
+import path = require('path')
 
 const log = getLogger('demogen')
 addAppender(new ColorAppender())
 
-const pjson = JSON.parse(readFileSync(resolve('../../package.json')).toString())
+const pjson = JSON.parse(fs.readFileSync(path.resolve('../../package.json')).toString())
 
 program
   .version(pjson.version)

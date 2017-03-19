@@ -1,6 +1,4 @@
 import test from 'ava'
-import h = require('hastscript')
-import toHtml = require('hast-util-to-html')
 
 import { Generator } from './generator'
 

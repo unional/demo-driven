@@ -10,11 +10,10 @@
     "moduleResolution": "node",
     "newLine": "LF",
     "noImplicitAny": false,
-    "removeComments": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "removeComments": false,
     "sourceMap": true,
-    "strictNullChecks": true,
-    "target": "es5"
+    "strictNullChecks": true
   }
 }

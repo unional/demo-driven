@@ -1,3 +1,0 @@
-page = metadata, [content];
-metadata = '---', newline, yaml, '---', newline;
-content = markdown;

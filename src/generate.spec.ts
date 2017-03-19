@@ -27,4 +27,3 @@ title: demo
       h('h1', ['First Header'])
     ))
 })
-

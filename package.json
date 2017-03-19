@@ -2,43 +2,51 @@
   "name": "demodd",
   "description": "Demo Driven Development",
   "version": "0.0.0",
-  "main": "dist/commonjs/index.js",
+  "main": "dist/es5/index.js",
+  "module": "dist/es2015/index.js",
   "bin": {
-    "demogen": "dist/commonjs/bin.js"
+    "demogen": "dist/es5/bin.js"
   },
-  "typings": "dist/commonjs/index.d.ts",
+  "typings": "dist/es5/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "npm run clean && npm run build-commonjs",
-    "build-commonjs": "tsc -p tsconfig.commonjs.json",
-    "clean": "rimraf dist",
-    "coverage": "npm test && nyc check-coverage --branches 85 --functions 85 --lines 85",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "build": "npm run clean && npm run build-es5",
+    "build-es5": "tsc -p tsconfig.es5.json",
+    "clean": "rimraf dist/es5 dist/es2015",
+    "dc": "npm run dependency-check",
     "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
     "lint": "tslint \"src/**/*.ts\"",
+    "prepere": "npm run build",
     "postpublish": "git push",
-    "prepare": "npm run build",
     "preversion": "git pull && npm run verify",
-    "test": "npm run clean && tsc && nyc ava",
-    "verify": "npm run lint && npm run coverage && npm run build && npm run dependency-check",
+    "verify": "npm run lint && npm run coverage && npm run dependency-check",
+    "coverage": "nyc --check-coverage --branches 85 --functions 85 --lines 85 npm test",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "test": "npm run clean && tsc && ava",
     "watch": "npm run clean && node scripts/watch.js"
   },
   "author": {
     "name": "Homa Wong",
     "email": "homawong@gmail.com"
   },
-  "homepage": "https://github.com/unional/demo-gen",
-  "bugs": "https://github.com/unional/demo-gen/issues",
+  "homepage": "https://github.com/unional/demodd",
+  "bugs": {
+    "url": "https://github.com/unional/demodd/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/unional/demodd.git"
+  },
   "license": "MIT",
   "ava": {
     "files": [
-      "dist/spec/**/*.spec.js"
+      "dist/es5/**/*.spec.js"
     ],
     "source": [
       "scripts/*.js",
-      "dist/spec/**/*.js",
+      "dist/es5/**/*.js",
       "fixtures",
       "*.json"
     ],
@@ -59,7 +67,6 @@
     "@types/node": "^7.0.8",
     "ava": "github:avajs/ava",
     "ava-fixture": "^0.9.0",
-    "browser-env": "^2.0.19",
     "core-js": "^2.4.1",
     "dependency-check": "^2.7.0",
     "eslint": "^3.13.0",
@@ -74,18 +81,15 @@
   "dependencies": {
     "aurelia-logging": "^1.2.0",
     "aurelia-logging-color": "^0.5.0",
-    "deep-extend": "^0.4.1",
     "hast-util-to-html": "^3.0.0",
     "js-yaml": "^3.8.2",
     "lodash": "^4.17.4",
-    "markdown-to-ast": "^3.4.0",
     "mdast-util-to-hast": "^2.4.0",
     "mkdirp": "^0.5.1",
     "mz": "^2.6.0",
     "remark": "^7.0.0",
     "remark-html": "^6.0.0",
     "remark-lint": "^6.0.0",
-    "showdown": "^1.5.5",
     "unist-util-visit": "^1.1.1",
     "vfile-reporter": "^3.0.0"
   }

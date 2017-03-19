@@ -1,13 +1,5 @@
-import { getLogger } from 'aurelia-logging'
-import extend = require('deep-extend')
-import toHtml = require('hast-util-to-html')
-import yaml = require('js-yaml')
 import _ = require('lodash')
-import toHAST = require('mdast-util-to-hast')
 import remark = require('remark')
-import lint = require('remark-lint')
-import html = require('remark-html')
-import visit = require('unist-util-visit')
 
 import { generate } from './generate'
 import { Page } from './interfaces'
@@ -27,7 +19,7 @@ export class Generator {
   options: Generator.Options
   private remark
   constructor(options?: Partial<Generator.Options>) {
-    this.options = extend({}, Generator.defaultOptions, options)
+    this.options = _.extend({}, Generator.defaultOptions, options)
     this.remark = remark()
   }
   addPage(name: string, content: string) {
