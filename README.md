@@ -1,4 +1,4 @@
-# demo-gen
+# demo-driven
 
 [![unstable][unstable-image]][unstable-url]
 [![NPM version][npm-image]][npm-url]
@@ -13,16 +13,16 @@ Demo Driven Development
 ## Usage
 
 ```sh
-npm install -g demodd
+npm install -g demo-driven
 
 # Start the server
-demodd .
+demo-driven .
 ```
 
 ## configuration
 
 ```js
-// demodd.json
+// demo-driven.json
 {
   "src": "."
 }

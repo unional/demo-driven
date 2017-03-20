@@ -11,12 +11,6 @@ export const defaultOptions = {
 }
 
 export class ProjectGenerator {
-  config
-  srcPath
-  root
-  entryFile
-  mainPath
-  allFiles
   private mergedConfig: Config
   constructor(
     private loader: ProjectLoader = new ProjectLoader(),

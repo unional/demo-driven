@@ -1,5 +1,5 @@
 {
-  "name": "demodd",
+  "name": "demo-driven",
   "description": "Demo Driven Development",
   "version": "0.0.0",
   "main": "dist/es5/index.js",
@@ -31,13 +31,13 @@
     "name": "Homa Wong",
     "email": "homawong@gmail.com"
   },
-  "homepage": "https://github.com/unional/demodd",
+  "homepage": "https://github.com/unional/demo-driven",
   "bugs": {
-    "url": "https://github.com/unional/demodd/issues"
+    "url": "https://github.com/unional/demo-driven/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/unional/demodd.git"
+    "url": "git://github.com/unional/demo-driven.git"
   },
   "license": "MIT",
   "ava": {

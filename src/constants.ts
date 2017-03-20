@@ -1,1 +1,1 @@
-export const CONFIG_FILENAME = 'demodd.json'
+export const CONFIG_FILENAME = 'demo-driven.json'
