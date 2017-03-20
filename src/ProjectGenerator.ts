@@ -34,9 +34,7 @@ export class ProjectGenerator {
     }
     const files = await g.generate()
     files.forEach(async file => {
-      let dest = file.name.slice(0, -3) + '.html'
-      const relative = path.relative(srcDir, dest)
-      dest = path.resolve(outDir, relative)
+      let dest = path.join(outDir, file.name.slice(0, -3) + '.html')
       await this.writer.write(dest, file.content)
     })
   }
