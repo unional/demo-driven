@@ -1,6 +1,5 @@
 import fs = require('fs')
 import path = require('path')
-import _ = require('lodash')
 
 import { CONFIG_FILENAME } from './constants'
 import { generate } from './generate'
@@ -24,5 +23,8 @@ export function getConfig(src: string): Config {
 }
 
 export function mergeConfig(config: Partial<Config>): Config {
-  return _.extend<Config>(config, getConfig)
+  return {
+    ...defaultConfig,
+    ...config
+  }
 }
