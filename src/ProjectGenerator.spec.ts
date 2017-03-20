@@ -1,30 +1,46 @@
 import test from 'ava'
-// import { fixture } from 'ava-fixture'
-// import fs = require('fs')
-import path = require('path')
+import dircompare = require('dir-compare')
+import fs = require('fs')
 
-import { ProjectGenerator } from './ProjectGenerator'
+import { ProjectGenerator } from './index'
 
 test('should throw when src does not exist', async t => {
   const generator = new ProjectGenerator()
-  const err = await t.throws(generator.generate('notexists'))
+  const err = await t.throws(generator.generate({
+    srcDir: 'notexists'
+  }))
   t.is(err.message, `'notexists' is not a directory.`)
 })
 
-test('should throw when folder has no file', async t => {
+test('should not throw when folder has no file', async t => {
   const generator = new ProjectGenerator()
-  const rejected = await t.throws(generator.generate('fixtures/cases/no-file'))
-  t.is(rejected.message, `Main file not found '${path.resolve('fixtures/cases/no-file/demo/index.md')}'`)
+  await generator.generate({
+    srcDir: 'fixtures/cases/no-file'
+  })
+  t.false(fs.existsSync('fixtures/results/no-file'))
 })
 
-test('should read config', async t => {
-  const generator = new ProjectGenerator()
-  const rejected = await t.throws(generator.generate('fixtures/cases/different-main'))
-  t.is(rejected.message, `Main file not found '${path.resolve('fixtures/cases/different-main/demo.md')}'`)
+test('should honor different main file', async () => {
+  await assertGenerate('different-main')
 })
 
-test('read and write a single file', async _t => {
-  const generator = new ProjectGenerator()
-  await generator.generate('fixtures/cases/single-file', 'fixtures/results/single-file')
-
+test('read and write a single file', async () => {
+  await assertGenerate('single-file')
 })
+
+async function assertGenerate(testCase: string) {
+  const config = {
+    srcDir: `fixtures/cases/${testCase}`,
+    outDir: `fixtures/results/${testCase}`
+  }
+  const generator = new ProjectGenerator()
+  await generator.generate(config)
+  assertDirEqual(`fixtures/baselines/${testCase}`, `fixtures/results/${testCase}`)
+}
+
+function assertDirEqual(target, baseline) {
+  const diff = dircompare.compareSync(target, baseline)
+  if (diff.distinct !== 0) {
+    throw Error('result and baseline directory does not match')
+  }
+}
