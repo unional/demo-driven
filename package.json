@@ -47,7 +47,7 @@
     "source": [
       "scripts/*.js",
       "dist/es5/**/*.js",
-      "fixtures",
+      "fixtures/cases",
       "*.json"
     ],
     "require": [
@@ -63,10 +63,11 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.55",
+    "@types/mkdirp": "^0.3.29",
     "@types/mz": "0.0.30",
     "@types/node": "^7.0.8",
     "ava": "github:avajs/ava",
-    "ava-fixture": "^0.9.0",
+    "ava-fixture": "^0.10.1",
     "core-js": "^2.4.1",
     "dependency-check": "^2.7.0",
     "eslint": "^3.13.0",
@@ -87,6 +88,7 @@
     "mdast-util-to-hast": "^2.4.0",
     "mkdirp": "^0.5.1",
     "mz": "^2.6.0",
+    "recursive-readdir": "^2.1.1",
     "remark": "^7.0.0",
     "remark-html": "^6.0.0",
     "remark-lint": "^6.0.0",
