@@ -9,6 +9,7 @@ export interface Config extends generate.Options {
   main: string,
   srcDir: string,
   outDir: string,
+  templateFile?: string
 }
 
 export const defaultConfig: Config = {

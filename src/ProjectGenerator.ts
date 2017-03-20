@@ -1,6 +1,6 @@
 import path = require('path')
 
-import { generate } from './generate'
+import { Generator } from './generator'
 import { ProjectLoader } from './ProjectLoader'
 
 import { mergeConfig, Config } from './config'
@@ -27,15 +27,14 @@ export class ProjectGenerator {
     const { srcDir, outDir } = this.mergedConfig
 
     await this.loader.load(srcDir)
-    const generatedFiles: ProjectLoader.File[] = []
+    const g = new Generator(this.mergedConfig)
+
     for (let file of this.loader.markdownFiles) {
-      generatedFiles.push({
-        path: file.path,
-        content: await generate(file.content, this.mergedConfig)
-      })
+      g.addPage(file)
     }
-    generatedFiles.forEach(async file => {
-      let dest = file.path.slice(0, -3) + '.html'
+    const files = await g.generate()
+    files.forEach(async file => {
+      let dest = file.name.slice(0, -3) + '.html'
       const relative = path.relative(srcDir, dest)
       dest = path.resolve(outDir, relative)
       await this.writer.write(dest, file.content)

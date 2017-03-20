@@ -17,10 +17,12 @@ export class ProjectLoader {
   private async loadFromDirectory(srcDir: string) {
     const filepaths = await getAllFilePaths(srcDir)
     const mdFilepaths = filepaths.filter(filepath => path.extname(filepath) === '.md')
-    this.markdownFiles = mdFilepaths.map(path => {
+    this.markdownFiles = mdFilepaths.map(p => {
+      const name = path.relative(srcDir, p)
       return {
-        path,
-        content: fs.readFileSync(path).toString()
+        name,
+        path: p,
+        content: fs.readFileSync(p).toString()
       }
     })
   }
@@ -28,6 +30,7 @@ export class ProjectLoader {
 
 export namespace ProjectLoader {
   export interface File {
+    name: string
     path: string,
     content: string
   }

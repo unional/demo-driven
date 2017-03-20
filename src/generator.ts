@@ -22,14 +22,15 @@ export class Generator {
     this.options = _.extend({}, Generator.defaultOptions, options)
     this.remark = remark()
   }
-  addPage(name: string, content: string) {
-    this.pages.push({ name, content })
+  addPage(page: Page) {
+    this.pages.push(page)
   }
   async generate() {
     return Promise.all(this.pages.map(async page => {
+      const { name } = page
       const content = await this.generatePage(page, this.options)
       return {
-        name: page.name,
+        name,
         content
       }
     }))
@@ -43,8 +44,7 @@ export class Generator {
     })
   }
   private applyTemplate(map) {
-    const keys = Object.keys(map)
-    return keys.reduce((result, key) => {
+    return Object.keys(map).reduce((result, key) => {
       return result.replace(RegExp(`{${key}}`), map[key])
     }, this.options.template)
   }

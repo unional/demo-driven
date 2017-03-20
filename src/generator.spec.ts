@@ -4,7 +4,10 @@ import { Generator } from './generator'
 
 test('must have yaml section', async t => {
   const generator = new Generator()
-  generator.addPage('demo', '# first header')
+  generator.addPage({
+    name: 'demo',
+    content: '# first header'
+  })
   const rejected = await t.throws(generator.generate())
   t.is(rejected.message, 'missing yaml section')
 })
@@ -14,7 +17,10 @@ test('can use custom page template', async t => {
     template: '<!doctype html><html><head><title>{name}</title></head><body>{content}</body></html>',
     yamlRequired: false
   })
-  generator.addPage('demo', '# first header')
+  generator.addPage({
+    name: 'demo',
+    content: '# first header'
+  })
   const pages = await generator.generate()
   t.deepEqual(pages[0], {
     name: 'demo',
@@ -35,14 +41,16 @@ test('adding style', async t => {
     }
   })
 
-  generator.addPage('demo', `---
+  generator.addPage({
+    name: 'demo',
+    content: `---
 title: demo-title
 subTitle: The best way to do ddd.
 links:
   page 1: page1.md
   page 2: page2.md
 ---
-# first header`)
+# first header`})
   const pages = await generator.generate()
   t.deepEqual(pages[0], {
     name: 'demo',
