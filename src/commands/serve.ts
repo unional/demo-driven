@@ -9,7 +9,7 @@ import { ProjectGenerator } from '../ProjectGenerator'
  * Serves demo pages.
  */
 export default async function serve(_rawArgv: string[]) {
-  const config = _.merge({}, ProjectGenerator.defaultOptions, readConfigFile())
+  const config = _.merge({}, ProjectGenerator.defaultOptions, readConfigFile(process.cwd()))
 
   const index = config.main.replace('.md', '.html')
   const bs = browserSync.create()
