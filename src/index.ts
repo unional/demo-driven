@@ -1,3 +1,3 @@
-export * from './config'
-export * from './generator'
+export * from './generate'
+export * from './Generator'
 export * from './ProjectGenerator'

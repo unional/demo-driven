@@ -1,6 +1,6 @@
 import test from 'ava'
 
-import { Generator } from './generator'
+import { Generator } from './index'
 
 test('must have yaml section', async t => {
   const generator = new Generator()

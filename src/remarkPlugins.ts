@@ -24,6 +24,10 @@ export namespace page {
   export const defaultOptions: Options = {
     yamlRequired: false
   }
+  export interface Page {
+    name: string,
+    content: string
+  }
   export interface Options {
     yamlRequired?: boolean
     title?: YamlNodeOptions

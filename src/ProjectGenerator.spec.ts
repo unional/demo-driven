@@ -2,7 +2,7 @@ import test from 'ava'
 import dircompare = require('dir-compare')
 import fs = require('fs')
 
-import { ProjectGenerator, Config } from './index'
+import { ProjectGenerator } from './index'
 
 test('should throw when src does not exist', async t => {
   const generator = new ProjectGenerator()
@@ -21,14 +21,14 @@ test('should not throw when folder has no file', async t => {
 })
 
 test('should honor different main file', async () => {
-  await assertGenerate('different-main', { yamlRequired: false })
+  await assertGenerate('different-main', { generatorOptions: { yamlRequired: false } })
 })
 
 test('read and write a single file', async () => {
   await assertGenerate('single-file')
 })
 
-async function assertGenerate(testCase: string, moreConfig?: Partial<Config>) {
+async function assertGenerate(testCase: string, moreConfig?: ProjectGenerator.PartialOptions) {
   const config = {
     srcDir: `fixtures/cases/${testCase}`,
     outDir: `fixtures/results/${testCase}`,

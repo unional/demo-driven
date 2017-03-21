@@ -2,7 +2,7 @@ import test from 'ava'
 import h = require('hastscript')
 import toHtml = require('hast-util-to-html')
 
-import { generate } from './generate'
+import { generate } from './index'
 
 test('empty content produces empty result', async t => {
   t.is(await generate(''), '')

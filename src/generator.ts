@@ -2,37 +2,27 @@ import _ = require('lodash')
 import remark = require('remark')
 
 import { generate } from './generate'
-import { Page } from './interfaces'
 import { page } from './remarkPlugins'
 
-export namespace Generator {
-  export interface Options extends page.Options {
-    template: string
-  }
-}
 export class Generator {
-  static defaultOptions = {
-    template: '{content}',
-    yamlRequired: true
-  }
   private remark
   constructor() {
     this.remark = remark()
   }
 
-  async generatePages(pages: Page[], options?: Partial<Generator.Options>) {
+  async generatePages(pages: page.Page[], options?: Partial<Generator.Options>) {
     const mergedOptions = this.mergeOptions(options)
     return Promise.all(pages.map(async page => {
       return this.generateOnePage(page, mergedOptions)
     }))
   }
 
-  async generatePage(page: Page, options?: Partial<Generator.Options>) {
+  async generatePage(page: page.Page, options?: Partial<Generator.Options>) {
     const mergedOptions = this.mergeOptions(options)
     return await this.generateOnePage(page, mergedOptions)
   }
 
-  async generateOnePage(page: Page, options: Generator.Options) {
+  async generateOnePage(page: page.Page, options: Generator.Options) {
     const { name } = page
     return {
       name,
@@ -44,7 +34,7 @@ export class Generator {
     return _.extend<Generator.Options>({}, Generator.defaultOptions, options)
   }
 
-  private async generateContent(page: Page, options: Generator.Options) {
+  private async generateContent(page: page.Page, options: Generator.Options) {
     const { name } = page
     const content = await generate(page.content, options)
     return this.applyTemplate(
@@ -58,5 +48,14 @@ export class Generator {
     return Object.keys(map).reduce((result, key) => {
       return result.replace(RegExp(`{${key}}`), map[key])
     }, template)
+  }
+}
+export namespace Generator {
+  export const defaultOptions = {
+    template: '{content}',
+    yamlRequired: true
+  }
+  export interface Options extends page.Options {
+    template: string
   }
 }

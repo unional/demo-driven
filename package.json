@@ -88,7 +88,6 @@
     "lodash": "^4.17.4",
     "mdast-util-to-hast": "^2.4.0",
     "mkdirp": "^0.5.1",
-    "mz": "^2.6.0",
     "recursive-readdir": "^2.1.1",
     "remark": "^7.0.0",
     "remark-html": "^6.0.0",

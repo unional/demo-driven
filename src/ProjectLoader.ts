@@ -1,4 +1,4 @@
-import fs = require('mz/fs')
+import fs = require('fs')
 import path = require('path')
 import recursive = require('recursive-readdir')
 
