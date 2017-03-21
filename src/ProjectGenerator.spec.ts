@@ -30,7 +30,7 @@ test('should honor different main file', async () => {
   await assertGenerate('different-main', { generatorOptions: { yamlRequired: false } })
 })
 
-test('read and write a single file', async () => {
+test.only('read and write a single file', async () => {
   await assertGenerate('single-file')
 })
 
@@ -46,7 +46,7 @@ async function assertGenerate(testCase: string, moreConfig?: ProjectGenerator.Pa
 }
 
 function assertDirEqual(target, baseline) {
-  const diff = dircompare.compareSync(target, baseline)
+  const diff = dircompare.compareSync(target, baseline, { compareContent: true })
   if (diff.distinct !== 0) {
     throw Error('result and baseline directory does not match')
   }
