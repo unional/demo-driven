@@ -11,10 +11,13 @@ import { ProjectGenerator } from '../ProjectGenerator'
 export default async function serve(_rawArgv: string[]) {
   const config = _.merge({}, ProjectGenerator.defaultOptions, readConfigFile())
 
-  console.log(config)
+  const index = config.main.replace('.md', '.html')
   const bs = browserSync.create()
   bs.init({
-    server: `./${config.outDir}`
+    server: {
+      baseDir: config.outDir,
+      index
+    }
   })
   bs.reload('*.html')
 }
