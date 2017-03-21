@@ -2,27 +2,34 @@ import fs = require('fs')
 import path = require('path')
 
 import { CONFIG_FILENAME } from './constants'
-import { generate } from './generate'
+import {Generator} from './generator'
 
-export interface Config extends generate.Options {
+export interface Config {
   main: string,
   srcDir: string,
   outDir: string,
-  templateFile?: string
+  templateFile?: string,
+  generatorOptions: Generator.Options
 }
 
-export const defaultConfig: Config = {
+export interface GeneratorConfig {
+  generatorOptions: Generator.Options
+}
+
+export const defaultConfig: Config | GeneratorConfig = {
   main: 'index.md',
   srcDir: 'demo',
-  outDir: 'demo'
+  outDir: 'demo',
+  generatorOptions: Generator.defaultOptions
 }
 
-export function getConfig(src: string): Config {
+export function readConfig(src: string): Config {
   const configPath = path.resolve(src, CONFIG_FILENAME)
+
   return fs.existsSync(configPath) ? JSON.parse(fs.readFileSync(configPath).toString()) : defaultConfig
 }
 
-export function mergeConfig(config: Partial<Config>): Config {
+export function mergeConfig(config: any): Config {
   return {
     ...defaultConfig,
     ...config

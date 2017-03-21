@@ -21,15 +21,12 @@ export class ProjectGenerator {
     const { srcDir, outDir } = this.mergedConfig
 
     await this.loader.load(srcDir)
-    const g = new Generator(this.mergedConfig)
+    const g = new Generator()
 
-    for (let file of this.loader.markdownFiles) {
-      g.addPage(file)
-    }
-    const files = await g.generate()
-    files.forEach(async file => {
-      let dest = path.join(outDir, file.name.slice(0, -3) + '.html')
-      await this.writer.write(dest, file.content)
+    const pages = await g.generatePages(this.loader.markdownFiles, this.mergedConfig)
+    pages.forEach(async page => {
+      let dest = path.join(outDir, page.name.slice(0, -3) + '.html')
+      await this.writer.write(dest, page.content)
     })
   }
 }

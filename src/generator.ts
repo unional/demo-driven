@@ -15,37 +15,48 @@ export class Generator {
     template: '{content}',
     yamlRequired: true
   }
-  pages: Page[] = []
-  options: Generator.Options
   private remark
-  constructor(options?: Partial<Generator.Options>) {
-    this.options = _.extend({}, Generator.defaultOptions, options)
+  constructor() {
     this.remark = remark()
   }
-  addPage(page: Page) {
-    this.pages.push(page)
-  }
-  async generate() {
-    return Promise.all(this.pages.map(async page => {
-      const { name } = page
-      const content = await this.generatePage(page, this.options)
-      return {
-        name,
-        content
-      }
+
+  async generatePages(pages: Page[], options?: Partial<Generator.Options>) {
+    const mergedOptions = this.mergeOptions(options)
+    return Promise.all(pages.map(async page => {
+      return this.generateOnePage(page, mergedOptions)
     }))
   }
-  async generatePage(page: Page, options) {
+
+  async generatePage(page: Page, options?: Partial<Generator.Options>) {
+    const mergedOptions = this.mergeOptions(options)
+    return await this.generateOnePage(page, mergedOptions)
+  }
+
+  async generateOnePage(page: Page, options: Generator.Options) {
+    const { name } = page
+    return {
+      name,
+      content: await this.generateContent(page, options)
+    }
+  }
+
+  private mergeOptions(options?: Partial<Generator.Options>): Generator.Options {
+    return _.extend<Generator.Options>({}, Generator.defaultOptions, options)
+  }
+
+  private async generateContent(page: Page, options: Generator.Options) {
     const { name } = page
     const content = await generate(page.content, options)
-    return this.applyTemplate({
-      name,
-      content
-    })
+    return this.applyTemplate(
+      options.template,
+      {
+        name,
+        content
+      })
   }
-  private applyTemplate(map) {
+  private applyTemplate(template, map) {
     return Object.keys(map).reduce((result, key) => {
       return result.replace(RegExp(`{${key}}`), map[key])
-    }, this.options.template)
+    }, template)
   }
 }
