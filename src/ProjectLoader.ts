@@ -6,7 +6,7 @@ export class ProjectLoader {
   markdownFiles: ProjectLoader.File[]
   async load(srcDir: string) {
     if (!fs.existsSync(srcDir))
-      throw Error(`'${srcDir}' is not a directory.`)
+      throw Error(`Directory '${srcDir}' not found.`)
     const fullPath = path.resolve(srcDir)
     if (!isDirectory(fullPath))
       throw Error('Only support directory')

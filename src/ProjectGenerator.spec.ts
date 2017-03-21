@@ -1,6 +1,7 @@
 import test from 'ava'
 import dircompare = require('dir-compare')
 import fs = require('fs')
+import path = require('path')
 
 import { ProjectGenerator } from './index'
 
@@ -9,7 +10,7 @@ test('should throw when src does not exist', async t => {
   const err = await t.throws(generator.generate({
     srcDir: 'notexists'
   }))
-  t.is(err.message, `'notexists' is not a directory.`)
+  t.is(err.message, `Directory 'notexists' not found.`)
 })
 
 test('should not throw when folder has no file', async t => {
@@ -18,6 +19,12 @@ test('should not throw when folder has no file', async t => {
     srcDir: 'fixtures/cases/no-file'
   })
   t.false(fs.existsSync('fixtures/results/no-file'))
+})
+
+test('should work on cwd if no argument passed', async t => {
+  const gen = new ProjectGenerator()
+  const err = await t.throws(gen.generate())
+  t.is(err.message, `Directory 'demo' not found.`)
 })
 
 test('should honor different main file', async () => {
