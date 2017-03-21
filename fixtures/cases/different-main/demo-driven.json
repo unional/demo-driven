@@ -1,4 +1,5 @@
 {
   "main": "demo.md",
-  "srcDir": "."
+  "srcDir": "pages",
+  "outDir": "out"
 }

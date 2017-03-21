@@ -19,7 +19,6 @@ export class ProjectGenerator {
   async generate(options?: ProjectGenerator.PartialOptions) {
     const opt: ProjectGenerator.Options = mergeOptions(options)
     const { srcDir, outDir } = opt
-
     this.log.info(`Loading files from '${srcDir}'`)
     await this.loader.load(srcDir)
     const g = new Generator()
@@ -58,7 +57,7 @@ export namespace ProjectGenerator {
 }
 
 function mergeOptions(options) {
-  const config = readConfigFile()
+  const config = readConfigFile(options && options.srcDir || process.cwd())
   let result = _.merge<ProjectGenerator.Options>({}, ProjectGenerator.defaultOptions, config, options)
   if (config) {
     if (config.srcDir)
