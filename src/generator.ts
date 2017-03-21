@@ -46,7 +46,7 @@ export class Generator {
   }
   private applyTemplate(template, map) {
     return Object.keys(map).reduce((result, key) => {
-      return result.replace(RegExp(`{${key}}`), map[key])
+      return result.replace(RegExp(`{${key}}`, 'g'), map[key])
     }, template)
   }
 }
