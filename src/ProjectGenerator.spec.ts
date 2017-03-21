@@ -30,7 +30,7 @@ test('should honor different main file', async () => {
   await assertGenerate('different-main', { generatorOptions: { yamlRequired: false } })
 })
 
-test.only('read and write a single file', async () => {
+test('read and write a single file', async () => {
   await assertGenerate('single-file')
 })
 
