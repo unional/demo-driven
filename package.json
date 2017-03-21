@@ -9,6 +9,7 @@
   },
   "typings": "dist/es5/index.d.ts",
   "files": [
+    "assets",
     "dist"
   ],
   "scripts": {

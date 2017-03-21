@@ -1,4 +1,5 @@
 import { Logger, getLogger } from 'aurelia-logging'
+import fs = require('fs')
 import path = require('path')
 import _ = require('lodash')
 
@@ -25,20 +26,22 @@ export class ProjectGenerator {
 
     this.log.info('Generating pages...')
     this.pages = await g.generatePages(this.loader.markdownFiles, opt.generatorOptions)
-    this.pages.forEach(async page => {
+    await Promise.all(this.pages.map(page => {
       let dest = path.join(outDir, page.name.slice(0, -3) + '.html')
-      await this.writer.write(dest, page.content)
-    })
+      return this.writer.write(dest, page.content)
+    }))
     this.log.info(`Pages written to '${outDir}'`)
   }
 }
+
+const template = fs.readFileSync(path.resolve(__dirname, '../../assets/template.html')).toString()
 
 export namespace ProjectGenerator {
   export const defaultOptions = {
     main: 'index.md',
     srcDir: 'demo',
     outDir: 'demo',
-    generatorOptions: Generator.defaultOptions
+    generatorOptions: { ...Generator.defaultOptions, template }
   }
   export interface PartialOptions {
     main?: string,
