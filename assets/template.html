@@ -4,10 +4,17 @@
 <meta charset="utf8">
 <title>{name}</title>
 
-{font-imports}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+
+<link rel="sytlesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+
+<!--{font-imports}-->
 <style>
 
-#header {
+/*#header {
     font-family: "{font:head}", sans-serif;
 }
 
@@ -39,28 +46,28 @@
 .DemoBox_head {
     background-color: {color:main};
     color: white;
-}
+}*/
 </style>
 
-{styles}
+<!--{styles}
 {scripts}
 {extraHead}
 
 <script>{js}</script>
-<style>{css}</style>
+<style>{css}</style>-->
 </head>
 <body>
-{bodyTop}
+<!--{bodyTop}-->
 
 <header id="header">
     <div class="title">
         {name}
     </div>
-    <div class="subtitle">
+    <!--<div class="subtitle">
         {subtitle}
-    </div>
+    </div>-->
 
-    {links}
+    <!--{links}-->
 </header>
 
 <section id="main">
