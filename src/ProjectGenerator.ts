@@ -19,12 +19,19 @@ export class ProjectGenerator {
   async generate(options?: ProjectGenerator.PartialOptions) {
     const opt: ProjectGenerator.Options = mergeOptions(options)
     const { srcDir, outDir } = opt
+
     this.log.info(`Loading files from '${srcDir}'`)
     await this.loader.load(srcDir)
     const g = new Generator()
 
+    const files = this.loader.markdownFiles
+    if (files.length === 0) {
+      this.log.info('No pages found.')
+      return
+    }
+
     this.log.info('Generating pages...')
-    this.pages = await g.generatePages(this.loader.markdownFiles, opt.generatorOptions)
+    this.pages = await g.generatePages(files, opt.generatorOptions)
     await Promise.all(this.pages.map(page => {
       let dest = path.join(outDir, page.name.slice(0, -3) + '.html')
       return this.writer.write(dest, page.content)
