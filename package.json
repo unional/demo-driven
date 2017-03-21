@@ -46,6 +46,7 @@
       "dist/es5/**/*.spec.js"
     ],
     "source": [
+      "assets",
       "scripts/*.js",
       "dist/es5/**/*.js",
       "fixtures/cases",
