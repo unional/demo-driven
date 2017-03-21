@@ -47,7 +47,7 @@ async function assertGenerate(testCase: string, moreConfig?: ProjectGenerator.Pa
 
 function assertDirEqual(target, baseline) {
   const diff = dircompare.compareSync(target, baseline, { compareContent: true })
-  if (diff.distinct !== 0) {
+  if (diff.differences !== 0) {
     throw Error('result and baseline directory does not match')
   }
 }
