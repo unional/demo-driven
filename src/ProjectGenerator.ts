@@ -1,3 +1,4 @@
+import { Logger, getLogger } from 'aurelia-logging'
 import path = require('path')
 import _ = require('lodash')
 
@@ -8,6 +9,7 @@ import { ProjectWriter } from './ProjectWriter'
 import { page } from './remarkPlugins'
 
 export class ProjectGenerator {
+  log: Logger = getLogger('Project Generator')
   pages: page.Page[]
   constructor(
     private loader: ProjectLoader = new ProjectLoader(),
@@ -17,14 +19,17 @@ export class ProjectGenerator {
     const opt: ProjectGenerator.Options = mergeOptions(options)
     const { srcDir, outDir } = opt
 
+    this.log.info(`Loading files from '${srcDir}'`)
     await this.loader.load(srcDir)
     const g = new Generator()
 
+    this.log.info('Generating pages...')
     this.pages = await g.generatePages(this.loader.markdownFiles, opt.generatorOptions)
     this.pages.forEach(async page => {
       let dest = path.join(outDir, page.name.slice(0, -3) + '.html')
       await this.writer.write(dest, page.content)
     })
+    this.log.info(`Pages written to '${outDir}'`)
   }
 }
 

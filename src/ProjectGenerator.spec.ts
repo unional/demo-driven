@@ -1,7 +1,6 @@
 import test from 'ava'
 import dircompare = require('dir-compare')
 import fs = require('fs')
-import path = require('path')
 
 import { ProjectGenerator } from './index'
 

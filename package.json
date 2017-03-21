@@ -5,7 +5,7 @@
   "main": "dist/es5/index.js",
   "module": "dist/es2015/index.js",
   "bin": {
-    "demogen": "dist/es5/bin.js"
+    "ddd": "dist/es5/bin.js"
   },
   "typings": "dist/es5/index.d.ts",
   "files": [
@@ -63,6 +63,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.55",
+    "@types/minimist": "^1.2.0",
     "@types/mkdirp": "^0.3.29",
     "@types/mz": "0.0.30",
     "@types/node": "^7.0.8",
@@ -87,6 +88,7 @@
     "js-yaml": "^3.8.2",
     "lodash": "^4.17.4",
     "mdast-util-to-hast": "^2.4.0",
+    "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
     "recursive-readdir": "^2.1.1",
     "remark": "^7.0.0",

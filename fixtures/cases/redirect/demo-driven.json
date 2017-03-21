@@ -1,0 +1,7 @@
+{
+  "font": "Open Sans",
+  "theme": "material-green",
+  "homepage": "demo.md",
+  "srcDir": "demo",
+  "ourDir": "out"
+}
