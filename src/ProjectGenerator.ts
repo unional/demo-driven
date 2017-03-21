@@ -58,5 +58,14 @@ export namespace ProjectGenerator {
 }
 
 function mergeOptions(options) {
-  return _.merge({}, ProjectGenerator.defaultOptions, readConfigFile(), options)
+  const config = readConfigFile()
+  let result = _.merge<ProjectGenerator.Options>({}, ProjectGenerator.defaultOptions, config, options)
+  if (config) {
+    if (config.srcDir)
+      result.srcDir = path.join(result.srcDir, config.srcDir)
+    if (config.outDir)
+      result.outDir = path.join(result.outDir, config.outDir)
+  }
+
+  return result
 }
