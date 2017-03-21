@@ -2,7 +2,7 @@ import { Logger, getLogger } from 'aurelia-logging'
 import path = require('path')
 import _ = require('lodash')
 
-import { readConfig } from './config'
+import { readConfigFile } from './config'
 import { Generator } from './Generator'
 import { ProjectLoader } from './ProjectLoader'
 import { ProjectWriter } from './ProjectWriter'
@@ -55,5 +55,5 @@ export namespace ProjectGenerator {
 }
 
 function mergeOptions(options) {
-  return _.merge({}, ProjectGenerator.defaultOptions, readConfig(), options)
+  return _.merge({}, ProjectGenerator.defaultOptions, readConfigFile(), options)
 }

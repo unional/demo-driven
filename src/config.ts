@@ -4,7 +4,7 @@ import path = require('path')
 import { CONFIG_FILENAME } from './constants'
 import { ProjectGenerator } from './ProjectGenerator'
 
-export function readConfig(): ProjectGenerator.PartialOptions | undefined {
+export function readConfigFile(): ProjectGenerator.PartialOptions | undefined {
   const configPath = path.resolve(process.cwd(), CONFIG_FILENAME)
 
   if (!fs.existsSync(configPath)) {
