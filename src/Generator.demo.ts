@@ -1,9 +1,10 @@
-import h = require('hastscript')
-import toHtml = require('hast-util-to-html')
-
 import { Generator } from './index'
 
 export async function workWithoutYaml(t) {
-  const html = await generate('# Some Header')
-  t.is(html, toHtml(h('h1', ['First Header'])))
+  const generator = new Generator()
+  const rejected = await t.throws(generator.generatePage({
+    name: 'demo',
+    content: '# first header'
+  }))
+  t.is(rejected.message, 'missing yaml section')
 }

@@ -20,7 +20,7 @@ function isCodeNode(node) {
     node.children[0].tagName === 'code'
 }
 function createCodeMirrorNode(node) {
-  console.log(node)
+  // console.log(node)
   return node
 }
 
