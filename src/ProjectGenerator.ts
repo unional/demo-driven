@@ -16,7 +16,7 @@ export class ProjectGenerator {
     private loader: ProjectLoader = new ProjectLoader(),
     private writer: ProjectWriter = new ProjectWriter()
   ) { }
-  async generate(options?: ProjectGenerator.PartialOptions) {
+  async generate(options: ProjectGenerator.PartialOptions = {}) {
     const opt: ProjectGenerator.Options = mergeOptions(options)
     const { srcDir, outDir } = opt
 
@@ -63,13 +63,13 @@ export namespace ProjectGenerator {
   }
 }
 
-function mergeOptions(options) {
-  const config = readConfigFile(options && options.srcDir || process.cwd())
+function mergeOptions(options: ProjectGenerator.PartialOptions) {
+  const config = readConfigFile(options.srcDir || process.cwd())
   let result = _.merge<ProjectGenerator.Options>({}, ProjectGenerator.defaultOptions, config, options)
   if (config) {
-    if (config.srcDir)
+    if (config.srcDir && config.srcDir !== result.srcDir)
       result.srcDir = path.join(result.srcDir, config.srcDir)
-    if (config.outDir)
+    if (config.outDir && config.outDir !== result.outDir)
       result.outDir = path.join(result.outDir, config.outDir)
   }
 

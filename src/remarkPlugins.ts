@@ -2,12 +2,30 @@ import toHtml = require('hast-util-to-html')
 import h = require('hastscript')
 import yaml = require('js-yaml')
 import toHAST = require('mdast-util-to-hast')
+// import find = require('unist-util-find')
 import visit = require('unist-util-visit')
 
-export function page(options: page.Options = page.defaultOptions) {
-  this.Compiler = compiler
+export function codeMirrorify(hast) {
 
-  function compiler(ast, file) {
+  visit(hast, 'element', (node, index, parent) => {
+    if (isCodeNode(node)) {
+      parent.children[index] = createCodeMirrorNode(node)
+    }
+  })
+}
+
+function isCodeNode(node) {
+  return node.tagName === 'pre' &&
+    node.children.length === 1 &&
+    node.children[0].tagName === 'code'
+}
+function createCodeMirrorNode(node) {
+  console.log(node)
+  return node
+}
+
+export function page(options: page.Options = page.defaultOptions) {
+  this.Compiler = function compiler(ast, file) {
     const hast = toHAST(ast)
 
     let yaml = extractYaml(ast)
@@ -17,6 +35,8 @@ export function page(options: page.Options = page.defaultOptions) {
     }
     else if (options.yamlRequired)
       file.fail('missing yaml section', ast)
+
+    codeMirrorify(hast)
     return toHtml(hast)
   }
 }
