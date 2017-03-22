@@ -22,7 +22,7 @@ export class Generator {
     return await this.generateOnePage(page, mergedOptions)
   }
 
-  async generateOnePage(page: page.Page, options: Generator.Options) {
+  private async generateOnePage(page: page.Page, options: Generator.Options) {
     const { name } = page
     return {
       name,

@@ -43,4 +43,4 @@ typings
 # project folders
 dist
 fixtures/results
-sample/out
+demo/out
