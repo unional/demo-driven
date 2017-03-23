@@ -24,20 +24,44 @@ function createCodeMirrorNode(node) {
   return node
 }
 
-export function page(options: page.Options = page.defaultOptions) {
-  this.Compiler = function compiler(ast, file) {
-    const hast = toHAST(ast)
-
-    let yaml = extractYaml(ast)
-    if (yaml) {
-      const header = createHeader(yaml, options)
-      hast.children.unshift(header)
+class PageCompiler {
+  private ast
+  private options
+  private hast
+  private headerYaml
+  private file
+  compile(ast, file, options) {
+    this.ast = ast
+    this.file = file
+    this.options = options
+    this.parse()
+    this.analyze()
+    // this.optimize()
+    this.transform()
+    return toHtml(this.hast)
+  }
+  private parse() {
+    this.headerYaml = extractYaml(this.ast)
+    this.hast = toHAST(this.ast)
+    codeMirrorify(this.hast)
+  }
+  private analyze() {
+    if (this.options.yamlRequired && !this.headerYaml) {
+      this.file.fail('missing yaml section', this.ast)
     }
-    else if (options.yamlRequired)
-      file.fail('missing yaml section', ast)
+  }
+  private transform() {
+    if (this.headerYaml) {
+      const header = createHeader(this.headerYaml, this.options)
+      this.hast.children.unshift(header)
+    }
+  }
+}
 
-    codeMirrorify(hast)
-    return toHtml(hast)
+export function page(options: page.Options = page.defaultOptions) {
+  const c = new PageCompiler()
+  this.Compiler = function compiler(ast, file) {
+    return c.compile(ast, file, options)
   }
 }
 export namespace page {
