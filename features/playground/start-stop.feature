@@ -5,12 +5,10 @@ Feature: Start playground
   I want to have a interactive playground to test out the code
 
   Scenario: Create a blank playground
-    Given I have the "minimum" config
-    When the application starts
+    When the application starts with the "minimum" config
     Then the playground is empty
 
   Scenario: Create a pre-loaded playground
-    Given I have the "single preload" config
-    And the "single preload" has some "non-empty value" in its playground content section
-    When the application starts
-    Then The playground should have the same "non-empty value" in there
+    Given the "single preload" config has "one" scenario with "console.log('preloaded')"
+    When the application starts with the "single scenario" config
+    Then the playground should contain "console.log('preloaded')"
