@@ -6,12 +6,12 @@ Feature: Run code in playground
 
   Scenario: Run simple code
     Given I use the "single preload" config
-    When I run the "playground" cli command
-    And I click the "Run" button
+    When the application starts
+    And I tell the playground to run
     Then "I am pre-loaded" will be printed in the result
 
   Scenario: Run imported code
     Given I use the "color-map" config
-    When I run the "playground" cli command
-    And I click the "Run" button
+    When the application starts
+    And I tell the playground to run
     Then "[{r:100,g:100:b100}]" will be printed in the result

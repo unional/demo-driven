@@ -6,13 +6,13 @@ Feature: support multiple scenarios
 
   Scenario: one secnario
     Given I use the "one scenario" config
-    When I run the "playground" cli command
+    When the application starts
     Then the scenario is preloaded
     And scenario selector is not available
 
   Scenario: two scenarios
     Given I use the "two scenarios" config
-    When I run the "playground" cli command
+    When the application starts
     Then there should be two scenarios available
     And the first scenario is preloaded
     And I can select the second scenario
