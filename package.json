@@ -81,7 +81,7 @@
     "rimraf": "^2.5.4",
     "tslint": "^4.3.1",
     "tslint-config-unional": "^0.7.0",
-    "typescript": "^2.1.4"
+    "typescript": "^2.2.2"
   },
   "dependencies": {
     "aurelia-logging": "^1.2.0",
