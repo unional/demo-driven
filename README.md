@@ -1,5 +1,7 @@
 # demo-driven
 
+[![Join the chat at https://gitter.im/unional/demo-driven](https://badges.gitter.im/unional/demo-driven.svg)](https://gitter.im/unional/demo-driven?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![unstable][unstable-image]][unstable-url]
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
