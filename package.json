@@ -98,6 +98,6 @@
     "recursive-readdir": "^2.1.1",
     "remark": "^7.0.0",
     "remark-lint": "^6.0.0",
-    "unist-util-visit": "^1.1.1"
+    "unist-util-visit": "^1.1.2"
   }
 }
