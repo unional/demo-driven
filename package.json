@@ -69,7 +69,7 @@
     "@types/minimist": "^1.2.0",
     "@types/mkdirp": "^0.3.29",
     "@types/mz": "0.0.31",
-    "@types/node": "^8.0.0",
+    "@types/node": "^8.0.13",
     "ava": "github:avajs/ava",
     "ava-fixture": "^0.10.1",
     "core-js": "^2.4.1",
