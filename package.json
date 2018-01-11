@@ -79,7 +79,7 @@
     "eslint-config-unional": "^0.2.3",
     "nyc": "^11.0.1",
     "rimraf": "^2.5.4",
-    "tslint": "^5.0.0",
+    "tslint": "5.8.0",
     "tslint-config-unional": "^0.8.0",
     "typescript": "^2.1.4"
   },
