@@ -97,7 +97,7 @@
     "mkdirp": "^0.5.1",
     "recursive-readdir": "^2.1.1",
     "remark": "^8.0.0",
-    "remark-lint": "^6.0.0",
+    "remark-lint": "^6.0.4",
     "unist-util-visit": "^1.1.1"
   }
 }
