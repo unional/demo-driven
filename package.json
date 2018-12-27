@@ -74,7 +74,7 @@
     "ava-fixture": "^0.11.0",
     "core-js": "^2.4.1",
     "dependency-check": "^2.7.0",
-    "dir-compare": "^1.3.0",
+    "dir-compare": "^1.5.4",
     "eslint": "^4.0.0",
     "eslint-config-unional": "^0.3.0",
     "nyc": "^11.0.1",
