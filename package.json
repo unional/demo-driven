@@ -85,7 +85,7 @@
   },
   "dependencies": {
     "aurelia-logging": "^1.2.0",
-    "aurelia-logging-color": "^0.5.0",
+    "aurelia-logging-color": "^1.0.1",
     "browser-sync": "^2.18.8",
     "codemirror": "^5.25.0",
     "hastscript": "^3.0.1",
