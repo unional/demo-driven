@@ -90,7 +90,7 @@
     "codemirror": "^5.25.0",
     "hastscript": "^3.0.1",
     "hast-util-to-html": "^3.0.0",
-    "js-yaml": "^3.8.2",
+    "js-yaml": "^3.13.0",
     "lodash": "^4.17.4",
     "mdast-util-to-hast": "^2.4.0",
     "minimist": "^1.2.0",
