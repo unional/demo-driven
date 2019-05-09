@@ -65,7 +65,7 @@
   },
   "devDependencies": {
     "@types/browser-sync": "0.0.37",
-    "@types/lodash": "^4.14.55",
+    "@types/lodash": "^4.14.125",
     "@types/minimist": "^1.2.0",
     "@types/mkdirp": "^0.5.0",
     "@types/mz": "0.0.32",
