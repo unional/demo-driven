@@ -91,7 +91,7 @@
     "hastscript": "^3.0.1",
     "hast-util-to-html": "^3.0.0",
     "js-yaml": "^3.8.2",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.15",
     "mdast-util-to-hast": "^2.4.0",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
