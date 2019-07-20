@@ -89,7 +89,7 @@
     "browser-sync": "^2.18.8",
     "codemirror": "^5.25.0",
     "hastscript": "^3.0.1",
-    "hast-util-to-html": "^3.0.0",
+    "hast-util-to-html": "^6.0.2",
     "js-yaml": "^3.8.2",
     "lodash": "^4.17.4",
     "mdast-util-to-hast": "^2.4.0",
