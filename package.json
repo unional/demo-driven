@@ -96,7 +96,7 @@
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
     "recursive-readdir": "^2.1.1",
-    "remark": "^8.0.0",
+    "remark": "^11.0.1",
     "remark-lint": "^6.0.0",
     "unist-util-visit": "^1.1.1"
   }
