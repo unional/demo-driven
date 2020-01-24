@@ -94,7 +94,7 @@
     "lodash": "^4.17.4",
     "mdast-util-to-hast": "^2.4.0",
     "minimist": "^1.2.0",
-    "mkdirp": "^0.5.1",
+    "mkdirp": "^1.0.3",
     "recursive-readdir": "^2.1.1",
     "remark": "^8.0.0",
     "remark-lint": "^6.0.0",
