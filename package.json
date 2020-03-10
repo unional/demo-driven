@@ -93,7 +93,7 @@
     "js-yaml": "^3.8.2",
     "lodash": "^4.17.4",
     "mdast-util-to-hast": "^2.4.0",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.1",
     "mkdirp": "^0.5.1",
     "recursive-readdir": "^2.1.1",
     "remark": "^8.0.0",
