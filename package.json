@@ -80,7 +80,7 @@
     "nyc": "^11.0.1",
     "rimraf": "^3.0.0",
     "tslint": "^5.0.0",
-    "tslint-config-unional": "^0.9.5",
+    "tslint-config-unional": "^0.10.0",
     "typescript": "^2.1.4"
   },
   "dependencies": {
